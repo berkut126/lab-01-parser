@@ -13,3 +13,6 @@ jobs:
     - name: "tests"
       script:
       - docker run  -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap:cpp scripts/tests.sh
+
+notifications:
+    email: false
