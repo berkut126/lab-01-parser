@@ -12,11 +12,7 @@ jobs:
       - docker run  -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap:cpp scripts/checks.sh
     - name: "tests"
       script:
-      - echo TRAVIS_REPO_SLUG=$TRAVIS_REPO_SLUG > .env
-      - echo TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST >> .env
-      - echo TRAVIS_BRANCH=$TRAVIS_BRANCH >> .env
-      - echo TRAVIS_COMMIT=$TRAVIS_COMMIT >> .env
-      - cat .env
+      - ./scripts/genenv.sh
       - docker run --env-file .env -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap:cpp scripts/tests.sh
 
 notifications:
