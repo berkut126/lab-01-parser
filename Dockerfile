@@ -3,7 +3,7 @@ LABEL maintainer="rusdevops@gmail.com"
 
 RUN apt update && apt install -y software-properties-common && \
     apt-add-repository -y "ppa:ubuntu-toolchain-r/test" && apt update && \
-    apt install -y libcurl4-openssl-dev curl \
+    apt install -y libcurl4-gnutls-dev curl nodejs npm \
     g++-7 lcov gcovr cmake cmake-data python3-pip clang && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install cpplint
+    pip3 install cpplint && npm install -g jscpd
