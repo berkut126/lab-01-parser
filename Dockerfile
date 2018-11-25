@@ -8,4 +8,7 @@ RUN apt update && apt install -y software-properties-common && \
     apt install -y libcurl4-gnutls-dev curl nodejs npm \
     g++-7 lcov gcovr cmake cmake-data python3-pip clang-7 && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install cpplint && npm install -g jscpd
+    pip3 install cpplint && npm install -g jscpd && \
+    apt -y autoremove && ln -s /usr/bin/clang-7 /usr/bin/clang && \
+    ln -s /usr/bin/clang++-7 /usr/bin/clang++ && \
+    ln -s /usr/bin/clang-cpp-7 /usr/bin/clang-cpp
