@@ -1,6 +1,6 @@
 [submodule "tools/polly"]
 	path = tools/polly
-	url = https://github.com/ruslo/polly
+	url = https://github.com/cpp-pm/polly
 [submodule "tools/gate"]
 	path = tools/gate
-	url = https://github.com/hunter-packages/gate.git
+	url = https://github.com/cpp-pm/gate
