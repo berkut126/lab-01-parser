@@ -32,7 +32,7 @@ find_package(GTest CONFIG REQUIRED)
 add_library(template STATIC
   # enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-)
+        include/Json.h)
 add_executable(tests
   # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
