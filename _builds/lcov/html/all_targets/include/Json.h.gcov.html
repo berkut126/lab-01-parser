@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - template - include/Json.h</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">include</a> - Json.h<span style="font-size: 80%;"> (source / <a href="Json.h.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">template</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2019-11-10 23:01:58</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : //</a>
+<span class="lineNum">       2 </span>            : // Created by rooted on 11.11.2019.
+<span class="lineNum">       3 </span>            : //
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : #ifndef TEMPLATE_JSON_H
+<a name="6"><span class="lineNum">       6 </span>            : #define TEMPLATE_JSON_H</a>
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span><span class="lineNoCov">          0 : class Json {</span>
+<span class="lineNum">       9 </span>            : public:
+<span class="lineNum">      10 </span>            :     // Конструктор из строки, содержащей Json-данные.
+<span class="lineNum">      11 </span>            :     explicit Json(const std::string&amp; s);
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            :     // Метод возвращает true, если данный экземпляр содержит в себе JSON-массив.
+<span class="lineNum">      14 </span>            :     // Иначе false.
+<span class="lineNum">      15 </span>            :     [[nodiscard]] bool is_array() const;
+<span class="lineNum">      16 </span>            :     // Метод возвращает true, если данный экземпляр содержит в себе JSON-объект.
+<span class="lineNum">      17 </span>            :     // Иначе false.
+<span class="lineNum">      18 </span>            :     [[nodiscard]] bool is_object() const;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            :     // Метод возвращает значение по ключу key, если экземпляр является
+<span class="lineNum">      21 </span>            :     // JSON-объектом. Значение может иметь один из следующих типов: Json,
+<span class="lineNum">      22 </span>            :     // std::string, double, bool или быть пустым. Если экземпляр является
+<span class="lineNum">      23 </span>            :     // JSON-массивом, генерируется исключение.
+<span class="lineNum">      24 </span>            :     std::any&amp; operator[](const std::string&amp; key);
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            :     // Метод возвращает значение по индексу index, если экземпляр является
+<span class="lineNum">      27 </span>            :     // JSON-массивом. Значение может иметь один из следующих типов: Json,
+<span class="lineNum">      28 </span>            :     // std::string, double, bool или быть пустым. Если экземпляр является
+<span class="lineNum">      29 </span>            :     // JSON-объектом, генерируется исключение.
+<span class="lineNum">      30 </span>            :     std::any&amp; operator[](int index);
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            :     // Метод возвращает объект класса Json из строки, содержащей Json-данные.
+<span class="lineNum">      33 </span>            :     static Json parse(const std::string&amp; s);
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            :     // Метод возвращает объекта класса Json из файла, содержащего Json-данные в
+<span class="lineNum">      36 </span>            :     // текстовом формате.
+<span class="lineNum">      37 </span>            :     static Json parseFile(const std::string&amp; path_to_file);
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : private:
+<span class="lineNum">      40 </span>            :     holderMap holder;
+<span class="lineNum">      41 </span>            :     void addToHolder(const std::string&amp; s);
+<span class="lineNum">      42 </span>            :     void addArrayToHolder(const std::string&amp; s, const int&amp; a);
+<span class="lineNum">      43 </span>            :     bool isArray;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : };
+<span class="lineNum">      46 </span>            : #endif //TEMPLATE_JSON_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

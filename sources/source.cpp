@@ -57,24 +57,24 @@ void Json::addToHolder(const std::string& s) {
     std::size_t offset = 0;
     while (s[offset] == ' ') offset++;
     auto substring = s.substr(offset);
-    auto key = substring.substr(0, s.find_first_of(':'));
+    auto key = substring.substr(1, s.find_first_of(':')-1);
     offset = key.length() - 1;
     while (key[key.length() - 1] == ' ') offset--;
     key = key.substr(0, offset);
     auto value = substring.substr(s.find_first_of(':'));
     offset = 0;
     while (s[offset] == ' ') offset++;
-    value = value.substr(offset);
+    value = value.substr(offset + 1);
     offset = value.length() - 1;
     while (value[offset] == ' ') offset--;
     if (value[0] == '"') {
-        holder.insert(holderPair(key, value));
+        holder.insert(holderPair(key, value.substr(1, value.length() - 2)));
     } else if (value == "true") {
         holder.insert(holderPair(key, true));
     } else if (value == "false") {
         holder.insert(holderPair(key, false));
     } else if (isdigit(value[0])) {
-        holder.insert(holderPair(key, std::stod(value)));
+        holder.insert(holderPair(key, std::stoi(value)));
     } else {
         holder.insert(holderPair(key, Json(value)));
     }
@@ -89,7 +89,7 @@ void Json::addArrayToHolder(const std::string& value, const int& a) {
     } else if (value == "false") {
         holder.insert(holderPair(key, false));
     } else if (isdigit(value[0])) {
-        holder.insert(holderPair(key, std::stod(value)));
+        holder.insert(holderPair(key, std::stoi(value)));
     } else {
         holder.insert(holderPair(key, Json(value)));
     }
@@ -125,3 +125,27 @@ Json Json::parseFile(const std::string& path_to_file) {
     f.read(data.data(), size);
     return Json(data);
 }
+
+/*int main(){
+
+    std::string json = "{"
+                       "\"lastname\":\"Ivanov\","
+                       "\"firstname\":\"Ivan\","
+                       "\"age\":25,"
+                       "\"islegal\":false,"
+                       "\"marks\":["
+                       "4,5,5,5,2,3"
+                       "],"
+                       "\"address\":{"
+                       "\"city\":\"Moscow\","
+                       "\"street\":\"Vozdvijenka\""
+                       "}"
+                       "}";
+    Json object = Json::parse(json);
+
+    auto a = object["lastname"];
+    auto b = std::any_cast<std::string>(object["lastname"]);
+
+    std::cout << b << std::endl;
+
+}*/

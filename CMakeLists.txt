@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_COVERAGE "Build coverage" OFF)
 
+link_libraries(stdc++fs)
+
 set(
   HUNTER_CACHE_SERVERS
   "https://github.com/bmstu-iu8-cpp-sem-3/hunter-cache"

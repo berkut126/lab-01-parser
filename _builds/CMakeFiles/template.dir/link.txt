@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtemplated.a  CMakeFiles/template.dir/sources/source.cpp.o
+/usr/bin/ranlib libtemplated.a
