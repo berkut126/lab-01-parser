@@ -21,13 +21,11 @@ Json::Json(const std::string& s) {
                 holder = std::map<std::string, std::any>();
                 while (a != rend) addToHolder(*a++);
             }
-
         } catch (const std::regex_error& e) {
-            std::cerr << "Error in regex \"" << regexPattern << "\"\nis: " << e.what()
-                      << std::endl;
+            std::cerr << "Error in regex \"" << regexPattern << "\"\nis: "
+            << e.what() << std::endl;
         }
-    }
-    else {
+    } else {
         isArray = true;
         auto regexPattern = R"~(\"\w+\"|true|false|null|\d)~";
         try {
@@ -45,7 +43,6 @@ Json::Json(const std::string& s) {
                 auto counter = 0;
                 while (a != rend) addArrayToHolder(*a++, counter++);
             }
-
         } catch (const std::regex_error& e) {
             std::cerr << "Error in regex \"" << regexPattern
             << "\" \nis: " << e.what() << std::endl;

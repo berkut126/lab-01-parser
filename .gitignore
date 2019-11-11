@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+.gitignore
+
+_build/
