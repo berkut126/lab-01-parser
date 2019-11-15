@@ -1,7 +1,6 @@
 // Copyright 2018 Your Name <your_email>
 
-#include <header.hpp>
-#include "Json.h"
+#include "../include/Json.h"
 
 Json::Json(const std::string& s) {
     if (s[0] == '{'){

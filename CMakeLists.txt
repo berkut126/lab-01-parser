@@ -21,6 +21,10 @@ HunterGate(
 )
 
 
+add_library(json STATIC sources/source.cpp)
+add_executable(main sources/main.cpp)
+target_link_libraries(main json)
+
 # TODO: rename project and delete this comment
 project(template)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")

@@ -5,6 +5,8 @@
 #ifndef TEMPLATE_JSON_H
 #define TEMPLATE_JSON_H
 
+#include "header.hpp"
+
 class Json {
 public:
     // Конструктор из строки, содержащей Json-данные.
