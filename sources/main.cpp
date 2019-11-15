@@ -1,12 +1,9 @@
 //
 // Created by rooted on 15.11.2019.
+// Copyright 2019 Andrey Ivanov <berkut126@gmail.com>
 //
-
 #include "../include/Json.h"
-
-
 int main(){
-
     std::string json = "{"
                        "\"lastname\":\"Ivanov\","
                        "\"firstname\":\"Ivan\","
@@ -21,10 +18,7 @@ int main(){
                        "}"
                        "}";
     Json object = Json::parse(json);
-
     auto a = object["lastname"];
     auto b = std::any_cast<std::string>(object["lastname"]);
-
     std::cout << b << std::endl;
-
 }
