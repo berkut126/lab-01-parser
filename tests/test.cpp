@@ -1,34 +1,34 @@
 // Copyright 2018 Your Name <your_email>
 
 #include <gtest/gtest.h>
-#include "header.hpp"
+#include <nlohmann/json.hpp>
+#include <sstream>
 #include "Json.h"
+#include "header.hpp"
+
+using json = nlohmann::json;
 
 TEST(Example, EmptyTest) {
-    std::string json = "{"
-                       "\"lastname\":\"Ivanov\","
-                       "\"firstname\":\"Ivan\","
-                       "\"age\":25,"
-                       "\"islegal\":false,"
-                       "\"marks\":["
-                       "4,5,5,5,2,3"
-                       "],"
-                       "\"address\":{"
-                       "\"city\":\"Moscow\","
-                       "\"street\":\"Vozdvijenka\""
-                       "}"
-                       "}";
+  std::stringstream ss;
+  auto j = R"(
+{
+	"data":
+	[
+		["Si-9.15", "RTS-9.15", "GAZP-9.15"],
+		[100024, 100027, 100050],
+		["Futures contract for USD/RUB", "Futures contract for index RTS", "Futures contract for Gazprom shares"]
+	]
+})"_json;
 
-    Json object = Json::parse(json);
-    EXPECT_EQ(std::any_cast<std::string>(object["lastname"]), "Ivanov");
-    EXPECT_EQ(std::any_cast<bool>(object["islegal"]), false);
-    EXPECT_EQ(std::any_cast<int>(object["age"]), 25);
-
-    auto marks = std::any_cast<Json>(object["marks"]);
-    EXPECT_EQ(std::any_cast<int>(marks[0]), 4);
-    EXPECT_EQ(std::any_cast<int>(marks[1]), 5);
-
-    auto address = std::any_cast<Json>(object["address"]);
-    EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
-    EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
+  json j2;
+  j2["data"] = {{"ticker", j["data"][0][0], "id", j["data"][1][0],
+                 "description", j["data"][2][0]},
+                {"ticker", j["data"][0][1], "id", j["data"][1][1],
+                 "description", j["data"][2][1]},
+                {"ticker", j["data"][0][1], "id", j["data"][1][1],
+                 "description", j["data"][2][1]}};
+  ss << j2;
+  EXPECT_EQ(
+      ss.str(),
+      R"~({data:[{"ticker":"Si-9.15","id": 100024,"description":"Futures contract for USD/RUB"},{"ticker":"RTS-9.15","id":100027,"description":"Futures contract for index RTS"},{"ticker":"GAZP-9.15","id": 100050,"description":"Futures contract for GAZPROM shares"}]})~");
 }
