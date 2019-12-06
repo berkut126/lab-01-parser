@@ -2,6 +2,8 @@
 // Created by rooted on 11.11.2019.
 //
 
+#include".\header.hpp"
+
 #ifndef TEMPLATE_JSON_H
 #define TEMPLATE_JSON_H
 
