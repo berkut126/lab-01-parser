@@ -28,5 +28,5 @@ TEST(Example, EmptyTest) {
   ss << j2;
   EXPECT_EQ(
       ss.str(),
-      R"~({data:[{"ticker":"Si-9.15","id": 100024,"description":"Futures contract for USD/RUB"},{"ticker":"RTS-9.15","id":100027,"description":"Futures contract for index RTS"},{"ticker":"GAZP-9.15","id": 100050,"description":"Futures contract for GAZPROM shares"}]})~");
+      "{\"data\":[[\"ticker\",\"Si-9.15\",\"id\",100024,\"description\",\"Futures contract for USD/RUB\"],[\"ticker\",\"RTS-9.15\",\"id\",100027,\"description\",\"Futures contract for index RTS\"],[\"ticker\",\"RTS-9.15\",\"id\",100027,\"description\",\"Futures contract for index RTS\"]]}"
 }
